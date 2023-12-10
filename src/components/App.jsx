@@ -15,9 +15,6 @@ export class App extends PureComponent {
     error: null,
     isEmpty: false,
     isVisible: false,
-    // showModal: false,
-    // tags: '',
-    // largeImageURL: '',
   };
   handlerOnSubmit = value => {
     this.setState({
@@ -56,8 +53,7 @@ export class App extends PureComponent {
   };
 
   render() {
-    const { images, isVisible, isEmpty, error, isLoading, largeImageURL, tag } =
-      this.state;
+    const { images, isVisible, isEmpty, error, isLoading } = this.state;
     return (
       <>
         <Searchbar onSubmit={this.handlerOnSubmit} />
