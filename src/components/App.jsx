@@ -29,15 +29,19 @@ export class App extends PureComponent {
     if (!searchName) return;
     this.setState({ isLoading: true });
     try {
-      const { hits, total } = await ImageService.getImages(searchName, page);
+      const { hits, totalHits } = await ImageService.getImages(
+        searchName,
+        page
+      );
       if (hits.length === 0) {
         this.setState({ isEmpty: true });
       }
       this.setState(prevState => ({
         images: [...prevState.images, ...hits],
-        isVisible: hits.length < Math.ceil(total / 12),
+        isVisible: page < Math.ceil(totalHits / 12),
       }));
     } catch (error) {
+      this.setState({ error: alert(`OOPS! Something went wrong: ${error}`) });
     } finally {
       this.setState({ isLoading: false });
     }
